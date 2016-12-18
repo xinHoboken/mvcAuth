@@ -14,11 +14,7 @@ namespace FormBasedAuth.Controllers
         {
             return View();
         }
-        public ActionResult Login()
-        {
-            return View();
-        }
-
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(Login l, string ReturnUrl = "")
