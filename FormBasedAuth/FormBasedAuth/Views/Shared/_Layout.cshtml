@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    
+    <style>
+        .menu {
+            list-style: none;
+            float: right;
+        }
+
+            .menu li {
+                float: left;
+            }
+
+                .menu li a {
+                    padding: 5px;
+                    margin-right: 2px;
+                    background-color: #f3f3f3;
+                }
+    </style>
+</head>
+<body>
+    <ul class="menu">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("My Profile", "MyProfile", "Home")</li>
+        <li>
+            @{
+                if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("Logout", "MyAccount", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+                    }
+                }
+                else
+                {
+                    @Html.ActionLink("Login", "Login", "MyAccount")
+                }
+            }
+        </li>
+    </ul>
+    <div style="height:1px;clear:both"></div>
+    @RenderBody()
+
+   
+    @RenderSection("scripts", required: false)
+</body>
+</html>
